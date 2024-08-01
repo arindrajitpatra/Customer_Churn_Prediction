@@ -35,5 +35,10 @@ Input customer features through a user-friendly web form.
 Predict whether a customer will churn or not.
 Display the prediction result on the same page.
 
+Open the web application.
+Input the required customer features.
+Click on the "Predict" button to get the prediction.
+The prediction result will be displayed on the same page.
+
 
 ![churn](https://github.com/user-attachments/assets/2540002b-3781-4b1e-9d33-b08abd3fa2ea)
