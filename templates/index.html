@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for('static', filename='background.png') }}');
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-group {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .input-group label {
+            margin-right: 10px;
+        }
+        .input-group input[type="number"] {
+            width: 50px;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .radio-group label {
+            margin: 0 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Customer Churn Prediction</h2>
+        <form action="{{ url_for('predict') }}" method="post" id="churnForm">
+            <div class="input-group">
+                <label>Senior Citizen:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="SeniorCitizen" value="0" required> No</label>
+                    <label><input type="radio" name="SeniorCitizen" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Tenure:</label>
+                <input type="number" name="tenure" required>
+            </div>
+            <div class="input-group">
+                <label>Monthly Charges:</label>
+                <input type="number" name="MonthlyCharges" step="0.01" required>
+            </div>
+            <div class="input-group">
+                <label>Partner:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="Partner_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="Partner_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Dependents:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="Dependents_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="Dependents_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Online Security:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="OnlineSecurity_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="OnlineSecurity_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Online Backup:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="OnlineBackup_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="OnlineBackup_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Device Protection:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="DeviceProtection_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="DeviceProtection_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Tech Support:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="TechSupport_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="TechSupport_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Contract:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="Contract_encoded" value="0" required> Month-to-month</label>
+                    <label><input type="radio" name="Contract_encoded" value="1" required> One year</label>
+                    <label><input type="radio" name="Contract_encoded" value="2" required> Two year</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Paperless Billing:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="PaperlessBilling_encoded" value="0" required> No</label>
+                    <label><input type="radio" name="PaperlessBilling_encoded" value="1" required> Yes</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Payment Method:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="PaymentMethod_encoded" value="0" required> Electronic check</label>
+                    <label><input type="radio" name="PaymentMethod_encoded" value="1" required> Mailed check</label>
+                    <label><input type="radio" name="PaymentMethod_encoded" value="2" required> Bank transfer</label>
+                    <label><input type="radio" name="PaymentMethod_encoded" value="3" required> Credit card</label>
+                </div>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <div class="result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+    </div>
+</body>
+</html>
