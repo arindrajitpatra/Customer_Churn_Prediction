@@ -1,5 +1,5 @@
 # Customer_Churn_Prediction
-This project helps a company to predict if it's any user is likely to charm or not
+This project helps a company to predict if it's any user is likely to churn or not
 
 Project Overview
 Customer churn prediction is a crucial aspect for businesses to retain their customers. This project uses a dataset of customer features to train a logistic regression model to predict churn. The web application allows users to input specific features and get a churn prediction.
